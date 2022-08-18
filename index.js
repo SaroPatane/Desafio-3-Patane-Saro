@@ -4,7 +4,7 @@ const Productos = require(`./productos.js`)
 
 
 const app = express();
-const productes = new Productos();
+const productes = new Productos('./productos.js')
 
 app.get('/productos', (request, response)=>{
     // response.send('servidor iniciado con express')
@@ -12,7 +12,7 @@ app.get('/productos', (request, response)=>{
 });
 
 app.get('/productoRandom', (request, response)=>{
-   return response.send(productes[Math.floor(Math.random() * productes.length)]);
+    response.send(nuevosProductos(Math.floor(Math.random() * Productos.length)));
 });
 
 
@@ -23,10 +23,6 @@ app.get('/probando', (request, response)=>{
 
 app.get('/*', (request, response)=>{
     response.send('pagina sin funcionar pa')
-});
-
-app.get('/productos', (request, response)=>{
-    response.send(``)
 });
 
 const server = app.listen (8080, ()=>{
